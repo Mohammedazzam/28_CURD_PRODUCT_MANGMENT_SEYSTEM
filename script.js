@@ -42,8 +42,17 @@ submit.onclick = function () {
         category: category.value
     }
     // console.log(newPro);
+
+    if(newPro.count > 1){
+        for(let i = 0; i < newPro.count; i++){
+            dataPro.push(newPro);
+        }
+    }else {
+        dataPro.push(newPro);
+    }
+
+
     // save localStorage
-    dataPro.push(newPro);
     localStorage.setItem('product', JSON.stringify(dataPro))
 
     clearData();
@@ -88,7 +97,7 @@ function showData() {
     let btnDelete = document.getElementById('deleteAll')
     if (dataPro.length > 0) {
         btnDelete.innerHTML = `
-        <button onclick="deleteAll()">Delete All</button>
+        <button onclick="deleteAll()">Delete All (${dataPro.length})</button>
         `
     } else {
         btnDelete.innerHTML = ''
@@ -105,7 +114,6 @@ function deleteData(i) {
     showData();
 }
 
-
 function deleteAll() {
     localStorage.clear();
     dataPro.splice(0);
@@ -115,6 +123,7 @@ function deleteAll() {
 
 
 // count
+
 // delete product
 // search
 // clean data
