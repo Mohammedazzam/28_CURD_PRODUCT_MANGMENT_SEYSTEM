@@ -10,6 +10,11 @@ let submit = document.getElementById('submit');
 
 //  console.log(title, price, taxes, taxes, ads, discount, total, count)
 
+
+let mood = 'create'
+let tmp;
+
+
 // get total
 function getTotal() {
     if (price.value != '') {
@@ -43,14 +48,21 @@ submit.onclick = function () {
     }
     // console.log(newPro);
 
-    if(newPro.count > 1){
-        for(let i = 0; i < newPro.count; i++){
+    if (mood == 'create') {
+        //هنا بنشئ منتج واحد أو عدة منتجات
+        if (newPro.count > 1) {
+            for (let i = 0; i < newPro.count; i++) {
+                dataPro.push(newPro);
+            }
+        } else {
             dataPro.push(newPro);
         }
     }else {
-        dataPro.push(newPro);
+        dataPro[tmp]= newPro;
+        mode = 'create';
+        submit.innerHTML = 'create'
+        count.style.display = 'block';
     }
-
 
     // save localStorage
     localStorage.setItem('product', JSON.stringify(dataPro))
@@ -74,6 +86,7 @@ function clearData() {
 
 // read
 function showData() {
+    getTotal()
     let table = '';
     for (let i = 0; i < dataPro.length; i++) {
         // table =dataPro[i];
@@ -88,7 +101,7 @@ function showData() {
                 <td>${dataPro[i].discount}</td>
                 <td>${dataPro[i].total}</td>
                 <td>${dataPro[i].category}</td>
-                <td><button id="update">update</button></td>
+                <td><button onclick="updateData(${i})" id="update">update</button></td>
                 <td><button onclick="deleteData(${i})" id="delete">delete</button></td>
             </tr>
         `
@@ -124,6 +137,26 @@ function deleteAll() {
 
 // count
 
-// delete product
+// UpdateData
+function updateData(i) {
+    // console.log(i)
+    //حتى أعرض البيانات لما بضغط على الأبديت في الانبوت الخاص فيهم
+    title.value = dataPro[i].title;
+    price.value = dataPro[i].price;
+    taxes.value = dataPro[i].taxes;
+    ads.value = dataPro[i].ads;
+    discount.value = dataPro[i].discount;
+    getTotal() //لتشغيل التوتال
+    count.style.display = 'none'; //هيك لغيت انبوت الكاونت
+    category.value = dataPro[i].category;
+    submit.innerHTML = 'Update'; //هيك بغير زر الكرييت لأبديت لما بدعس على الزر
+    mood = 'update';
+    tmp = i;
+    scroll({
+        top:0,
+        behavior:'smooth'
+})
+}
+
 // search
 // clean data
