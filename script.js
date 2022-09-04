@@ -85,21 +85,36 @@ function showData() {
         `
     }
     document.getElementById('tbody').innerHTML = table;
+    let btnDelete = document.getElementById('deleteAll')
+    if (dataPro.length > 0) {
+        btnDelete.innerHTML = `
+        <button onclick="deleteAll()">Delete All</button>
+        `
+    } else {
+        btnDelete.innerHTML = ''
+    }
 }
 showData()
 
 
-    // delete
-    function deleteData(i) {
-        // console.log(i);
-        dataPro.splice(i, 1);
-        localStorage.product = JSON.stringify(dataPro);
-        showData();
-    }
-    
+// delete
+function deleteData(i) {
+    // console.log(i);
+    dataPro.splice(i, 1);
+    localStorage.product = JSON.stringify(dataPro);
+    showData();
+}
 
 
- // count
- // delete product
- // search
- // clean data
+function deleteAll() {
+    localStorage.clear();
+    dataPro.splice(0);
+    showData();
+
+}
+
+
+// count
+// delete product
+// search
+// clean data

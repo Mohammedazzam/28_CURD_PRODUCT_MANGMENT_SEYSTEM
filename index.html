@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>CRUDS</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="crud">
         <div class="head">
@@ -22,8 +24,8 @@
                 <input onkeyup="getTotal()" type="number" id="discount" placeholder="discount">
                 <small onkeyup="getTotal()" id="total"></small>
             </div>
-            <input type="number" placeholder="count"  id="count">
-            <input type="text" placeholder="category"  id="category">
+            <input type="number" placeholder="count" id="count">
+            <input type="text" placeholder="category" id="category">
             <button id="submit">Create</button>
         </div>
         <div class="output">
@@ -34,7 +36,9 @@
                     <button id="searchCategory">search By Category</button>
                 </div>
             </div>
+            <div id="deleteAll">
 
+            </div>
             <table>
                 <tr>
                     <th>id</th>
@@ -48,8 +52,8 @@
                     <th>update</th>
                     <th>delete</th>
                 </tr>
-                <tbody id ="tbody">
-                
+                <tbody id="tbody">
+
                 </tbody>
             </table>
         </div>
@@ -57,4 +61,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
